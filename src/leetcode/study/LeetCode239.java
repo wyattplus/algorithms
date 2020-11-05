@@ -1,47 +1,28 @@
 package leetcode.study;
 
-import java.util.ArrayDeque;
+import java.util.LinkedList;
 
 public class LeetCode239 {
-    ArrayDeque<Integer> deq = new ArrayDeque<Integer>();
-    int[] nums;
 
-    public void clean_deque(int i, int k) {
-        // remove indexes of elements not from sliding window
-        if (!deq.isEmpty() && deq.getFirst() == i - k)
-            deq.removeFirst();
-
-        // remove from deq indexes of all elements
-        // which are smaller than current element nums[i]
-        while (!deq.isEmpty() && nums[i] > nums[deq.getLast()]) deq.removeLast();
-    }
 
     public int[] maxSlidingWindow(int[] nums, int k) {
-        int n = nums.length;
-        if (n * k == 0) return new int[0];
-        if (k == 1) return nums;
-
-        // init deque and output
-        this.nums = nums;
-        int max_idx = 0;
-        for (int i = 0; i < k; i++) {
-            clean_deque(i, k);
-            deq.addLast(i);
-            // compute max in nums[:k]
-            if (nums[i] > nums[max_idx]) max_idx = i;
+        if (nums == null || nums.length < 2) return nums;
+//        ArrayDeque<Integer> deque = new ArrayDeque<Integer>();
+        LinkedList<Integer> queue = new LinkedList();
+        int[] result = new int[nums.length - k + 1];
+        for (int i = 0; i < nums.length; i++) {
+            while (!queue.isEmpty() && nums[queue.peekLast()] <= nums[i]) {
+                queue.pollLast();
+            }
+            queue.addLast(i);
+            if (queue.peek() <= i - k) {
+                queue.poll();
+            }
+            if (i + 1 >= k) {
+                result[i + 1 - k] = nums[queue.peek()];
+            }
         }
-        int[] output = new int[n - k + 1];
-        output[0] = nums[max_idx];
+        return result;
 
-        // build output
-        for (int i = k; i < n; i++) {
-            clean_deque(i, k);
-            deq.addLast(i);
-            output[i - k + 1] = nums[deq.getFirst()];
-        }
-        return output;
     }
 }
-
-
-
