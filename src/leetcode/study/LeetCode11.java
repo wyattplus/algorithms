@@ -1,7 +1,16 @@
 package leetcode.study;
 
 public class LeetCode11 {
+    //practice1 左右向中间收敛
     public int maxArea(int[] height) {
-        return 1;
+        int max = 0;
+        for (int i = 0, j = height.length - 1; i < j; ) {
+            int minHeight = height[i] < height[j] ? height[i++] : height[j--];
+            int area = (j - i + 1) * minHeight;
+            max = Math.max(max, area);
+        }
+
+
+        return max;
     }
 }
