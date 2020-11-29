@@ -32,6 +32,19 @@ public class LeetCode242 {
         return map2.equals(map);
     }
 
+    //practice-2 hash值判断
+    public boolean isAnagram2(String s, String t) {
+        if (s.length() != t.length()) return false;
+        int[] index = new int[26];
+        for (int i = 0; i < s.length(); i++) {
+            index[s.charAt(i) - 'a']++;
+            index[t.charAt(i) - 'a']--;
+        }
+        for (int i = 0; i < 26; i++) {
+            if (index[i] != 0) return false;
+        }
+        return true;
+
+    }
 
 }
-
