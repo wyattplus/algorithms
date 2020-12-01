@@ -14,7 +14,7 @@ public class LeetCode22 {
     }
 
     void generate(int left, int right, int n, String s) {
-        //teminator
+        //terminator
         if (left == n && right == n) {
             System.out.println(s);
             result.add(s);
@@ -34,8 +34,24 @@ public class LeetCode22 {
         //reserve
     }
 
-    public static void main(String[] args) {
-        System.out.println(new LeetCode22().generateParenthesis(3));
+    //    practice-2 减法递归
+    public List<String> generateParenthesis2(int n) {
+        result = new ArrayList<String>();
+        generate2(n, n, n, "");
+        return result;
+    }
+
+    void generate2(int left_remain, int right_remain, int n, String s) {
+        //terminator
+        if (left_remain == 0 && right_remain == 0) {
+            result.add(s);
+        }
+        //process & recursion
+        if (left_remain != 0) generate2(left_remain - 1, right_remain, n, s + "(");
+
+        if (right_remain != 0 && right_remain > left_remain) generate2(left_remain, right_remain - 1, n, s + ")");
+
+        //no reset
     }
 }
 
