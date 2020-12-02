@@ -25,15 +25,20 @@ public class LeetCode98 {
         return true;
     }
 
-    class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
+    //practice-2 中序遍历，迭代法
+    public boolean isValidBST2(TreeNode root) {
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        Integer temp = null;
+        while (!stack.isEmpty() || root != null) {
+            while (root != null) {
+                stack.push(root);
+                root = root.left;
+            }
+            root = stack.pop();
+            if (temp != null && temp >= root.val) return false;
+            temp = root.val;
+            root = root.right;
         }
+        return true;
     }
-
-
 }
