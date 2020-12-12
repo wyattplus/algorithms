@@ -1,10 +1,7 @@
 package leetcode.study;
 
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 public class LeetCode102 {
     public List<List<Integer>> levelOrder(TreeNode root) {
@@ -26,6 +23,30 @@ public class LeetCode102 {
         }
         return result;
     }
+
+    //practice-2 bfs
+    public List<List<Integer>> levelOrder2(TreeNode root) {
+
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        if (root == null) return result;
+        Deque<TreeNode> queue = new ArrayDeque<>();
+        queue.offerLast(root);
+        while (!queue.isEmpty()) {
+            //当前层的结果
+            List<Integer> row = new ArrayList<>();
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.pollFirst();
+                row.add(node.val);
+                if (node.left != null) queue.offerLast(node.left);
+                if (node.right != null) queue.offerLast(node.right);
+            }
+            result.add(row);
+        }
+
+        return result;
+    }
+
 }
 
 
