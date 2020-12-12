@@ -47,6 +47,29 @@ public class LeetCode102 {
         return result;
     }
 
+    //practice-3 dfs
+    class Solution {
+        public List<List<Integer>> levelOrder(TreeNode root) {
+            List<List<Integer>> result = new ArrayList<>();
+            if (root != null) dfs(result, root, 0);
+            return result;
+        }
+
+        private void dfs(List<List<Integer>> result, TreeNode node, int level) {
+            if (result.size() - 1 < level) {
+                result.add(new ArrayList<Integer>());
+            }
+            result.get(level).add(node.val);
+            if (node.left != null) {
+                dfs(result, node.left, level + 1);
+            }
+            if (node.right != null) {
+                dfs(result, node.right, level + 1);
+            }
+        }
+    }
+
+
 }
 
 
