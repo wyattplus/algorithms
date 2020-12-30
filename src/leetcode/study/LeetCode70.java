@@ -36,5 +36,15 @@ public class LeetCode70 {
         return f3;
     }
 
-
+    //practice 4
+    public int climbStairs4(int n) {
+        if (n <= 2) return n;
+        int a = 0, b = 1, c = 2;
+        for (int i = 2; i < n; i++) {
+            a = b;
+            b = c;
+            c = a + b;
+        }
+        return c;
+    }
 }
