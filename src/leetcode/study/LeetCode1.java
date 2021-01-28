@@ -18,4 +18,20 @@ public class LeetCode1 {
         }
         return new int[0];
     }
+
+    //practice-2
+    public int[] twoSum2(int[] nums, int target) {
+        Map<Integer, Integer> map = new HashMap<Integer, Integer>(nums.length - 1);
+        for (int i = 0; i < nums.length; i++) {
+            int x = target - nums[i];
+            if (map.containsKey(x)) {
+                return new int[]{i, map.get(x).intValue()};
+            } else {
+                map.put(nums[i], i);
+            }
+
+
+        }
+        return new int[0];
+    }
 }
