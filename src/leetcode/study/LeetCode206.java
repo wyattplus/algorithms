@@ -29,9 +29,25 @@ public class LeetCode206 {
         node1.next = node2;
 
 
-
-
         new LeetCode206().reverseList(node1);
 
+    }
+
+    public ListNode reverseList2(ListNode head) {
+        ListNode slow = null;
+        ListNode quick = head;
+        while (quick != null) {
+            //双指针
+            //1。设置临时对象保存下一个链表节点
+            ListNode next = quick.next;
+            //2。将当前对象指向慢指针
+            quick.next = slow;
+            //3。慢指针移动一步
+            slow = quick;
+            //4。快指针移动一步
+            quick = next;
+        }
+
+        return slow;
     }
 }

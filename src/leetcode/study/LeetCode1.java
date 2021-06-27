@@ -34,4 +34,18 @@ public class LeetCode1 {
         }
         return new int[0];
     }
+
+    public int[] twoSum3(int[] nums, int target) {
+        Map<Integer, Integer> dict = new HashMap<Integer, Integer>(nums.length - 1);
+        for (int i = 0; i < nums.length; i++) {
+            int oth = target - nums[i];
+            if (dict.containsKey(oth)) {
+                return new int[]{dict.get(oth), i};
+            } else {
+                dict.put(nums[i], i);
+            }
+        }
+        return new int[]{};
+    }
+
 }
