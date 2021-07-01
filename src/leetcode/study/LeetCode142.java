@@ -19,4 +19,31 @@ public class LeetCode142 {
         }
         return fast;
     }
+
+    /**
+     * 思路：数学公式推导
+     * 1。第一相遇，f=s+nb
+     * 2。设置第二次相遇，f指针回头部，重遇时为入口点。
+     *
+     * @param head
+     * @return
+     */
+    public ListNode detectCycle2(ListNode head) {
+        ListNode fast = head, slow = head;
+        do {
+            if (fast == null || fast.next == null) return null;
+            fast = fast.next.next;
+            slow = slow.next;
+            //第一次相遇
+            if (fast == slow) break;
+        } while (true);
+        //构建第二次相遇
+        fast = head;
+        while (fast != slow) {
+            fast = fast.next;
+            slow = slow.next;
+        }
+        //第二次交汇点
+        return fast;
+    }
 }
