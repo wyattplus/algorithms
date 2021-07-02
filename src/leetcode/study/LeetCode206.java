@@ -50,4 +50,25 @@ public class LeetCode206 {
 
         return slow;
     }
+
+    /**
+     * 思路：双指针
+     * 1。设置1个结果+1个current指针
+     * 2。移动current，不断改变next
+     * 3。o（n）复杂度
+     *
+     * @param head
+     * @return
+     */
+    public ListNode reverseList3(ListNode head) {
+        ListNode result = null;
+        ListNode current = head;
+        while (current != null) {
+            ListNode temp = current.next;
+            current.next = result;
+            result = current;
+            current = temp;
+        }
+        return result;
+    }
 }
