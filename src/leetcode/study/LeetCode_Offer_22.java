@@ -1,6 +1,6 @@
 package leetcode.study;
 
-public class LeetCode_Offer_22 {
+public class LeetCodeOffer22 {
     /**
      * 思路：求长度，进行n-k获得位置
      *
