@@ -1,1 +1,1 @@
-# 何时努力，都是成长！
+# Deliberate Practice！努力面对自己所惧怕的！
