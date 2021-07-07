@@ -46,4 +46,21 @@ public class LeetCode283 {
         }
     }
 
+    /**
+     * 双指针
+     *
+     * @param nums
+     */
+    public void moveZeroes4(int[] nums) {
+        int current = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != 0) {
+                nums[current] = nums[i];
+                if (i != current) {
+                    nums[i] = 0;
+                }
+                current++;
+            }
+        }
+    }
 }
